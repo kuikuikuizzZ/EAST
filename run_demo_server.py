@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os
-
+os.environ['CUDA_VISIBLE_DEVICES']='1'
 import time
 import datetime
 import cv2
@@ -191,7 +191,7 @@ def save_result(img, rst):
 
 
 
-checkpoint_path = './east_icdar2015_resnet_v1_50_rbox'
+checkpoint_path = './model/east_icdar2015_resnet_v1_50_rbox'
 
 
 @app.route('/', methods=['POST'])
@@ -210,8 +210,8 @@ def index_post():
 def main():
     global checkpoint_path
     parser = argparse.ArgumentParser()
-    parser.add_argument('--port', default=8769, type=int)
-    parser.add_argument('--checkpoint-path', default=checkpoint_path)
+    parser.add_argument('--port', default=10004, type=int)
+    parser.add_argument('--checkpoint_path', default=checkpoint_path)
     parser.add_argument('--debug', action='store_true')
     args = parser.parse_args()
     checkpoint_path = args.checkpoint_path
